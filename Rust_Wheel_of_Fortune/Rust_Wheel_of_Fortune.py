@@ -76,7 +76,7 @@ while True:
         invbar_region = (invbar_region_x, invbar_1_region_y, invbar_1_region_h, invbar_1_region_w)
         print(invbar_region)
 
-        scrap_in_regio = IF_Img(r"Rust_Wheel_of_Fortune\img\scrap.png", invbar_region, 0.75, "Cheack for Scrap in Region")
+        scrap_in_regio = IF_Img(r"img\scrap.png", invbar_region, 0.75, "Cheack for Scrap in Region")
         if scrap_in_regio == True:
             scrap_in_regio_Slots = scrap_in_regio_Slots + 1
 
@@ -145,7 +145,7 @@ while True:
 
     pyperclip.copy(f"{gam_val}")
 
-    if scrap_in_regio_Slots > 1 :
+    if scrap_in_regio_Slots > 1 and clipboard_content < gam_val:
 
         log(f"moveTo -> {invbar_1}")
         pyautogui.moveTo(invbar_1[0],invbar_1[1], ran)
@@ -164,3 +164,14 @@ while True:
     pyautogui.moveTo(scrap_split_pos[0],scrap_split_pos[1], ran)
 
     pyautogui.dragTo(drag_to_bet[0], drag_to_bet[1], ran, button='left')
+
+    if scrap_in_regio_Slots > 1 and clipboard_content < gam_val:
+
+            invbar_x = invbar_1[0] + ((scrap_in_regio_Slots-1)*95)
+            invbar_y = invbar_1[1]
+            invbar = (invbar_x,invbar_y)
+    
+            log(f"moveTo -> {invbar}")
+            pyautogui.moveTo(invbar[0],invbar[1], 0.2)
+            time.sleep(0.1)
+            pyautogui.dragTo(invbar_1[0], invbar_1[1], 0.2, button='left')
